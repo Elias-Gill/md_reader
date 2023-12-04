@@ -1,7 +1,7 @@
 {
   "name": "tauri-app",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -9,8 +9,8 @@
     "preview": "vite preview",
     "tauri": "tauri",
     "commit": "cz",
-    "release" : "standard-version", 
-    "release:beta" : "standard-version -p beta"
+    "release": "standard-version",
+    "release:beta": "standard-version -p beta"
   },
   "dependencies": {
     "@tauri-apps/api": "^1.5.1",
