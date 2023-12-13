@@ -1,11 +1,11 @@
-import PropTypes from 'prop-types';
-import { useState, useEffect } from 'react';
-import { listFiles } from '../../tauriApi.js';
+import PropTypes from "prop-types";
+import { useState, useEffect } from "react";
+import { listFiles } from "../../tauriApi.js";
 
 function SideBar(props) {
     const path = props.path;
     const changeFile = props.changeFile;
-    let [filesList, updateFilesList] = useState(['']);
+    let [filesList, updateFilesList] = useState([""]);
 
     useEffect(() => {
         try {

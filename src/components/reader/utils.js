@@ -1,14 +1,14 @@
-import snarkdown from 'snarkdown';
-import { BaseDirectory, readTextFile } from '@tauri-apps/api/fs';
-import hljs from 'highlight.js';
+import snarkdown from "snarkdown";
+import { BaseDirectory, readTextFile } from "@tauri-apps/api/fs";
+import hljs from "highlight.js";
 
 function higlightCode(doc) {
-    let elements = doc.querySelectorAll('.code');
+    let elements = doc.querySelectorAll(".code");
     for (let i = 0; i < elements.length; i++) {
         let language = elements[0].classList[1];
 
         // replace the code block with highlighted code
-        elements[i].childs[0].innerHTML = hljs.highlight('<span>Hello World!</span>', {
+        elements[i].childs[0].innerHTML = hljs.highlight("<span>Hello World!</span>", {
             language: language
         }).value;
     }
@@ -18,7 +18,7 @@ function markdownToHtml(text) {
     let html = snarkdown(text);
 
     let parser = new DOMParser();
-    let doc = parser.parseFromString(html, 'text/html');
+    let doc = parser.parseFromString(html, "text/html");
 
     higlightCode(doc);
 

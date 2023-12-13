@@ -18,11 +18,7 @@
             "jsx": true
         }
     },
-    "plugins": [
-        "react", 
-        "@typescript-eslint",
-        "react-hooks"
-    ],
+    "plugins": ["react", "@typescript-eslint", "react-hooks"],
     "rules": {
         "semi": ["error", "always"],
         "quotes": ["error", "double"],

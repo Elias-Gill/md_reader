@@ -1,11 +1,11 @@
-import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react';
-import { openFile } from './utils.js';
+import PropTypes from "prop-types";
+import { useEffect, useState } from "react";
+import { openFile } from "./utils.js";
 
 function Reader(props) {
     const currentFile = props.file;
     const baseDir = props.baseDir;
-    const [content, setcontent] = useState('');
+    const [content, setcontent] = useState("");
 
     useEffect(() => {
         setcontent(openFile(currentFile, baseDir));
