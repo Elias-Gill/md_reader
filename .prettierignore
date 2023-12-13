@@ -1,0 +1,7 @@
+README.md
+CHANGELOG.md
+src-tauri/
+node_modules/
+.vscode/
+.git/
+.github/
