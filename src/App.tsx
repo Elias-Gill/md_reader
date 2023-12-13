@@ -8,6 +8,7 @@ function App() {
     return (
         <div className="flex justify-around h-screen max-h-screen max-w-6xl mr-auto ml-auto ">
             <div className="border-r overflow-auto">
+                {/* TODO: cambio de carpetas y recibir parametros de entrada por consola */}
                 <SideBar path="~/Descargas" changeFile={changeFile} />
             </div>
 

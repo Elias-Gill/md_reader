@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 import { listFiles } from "../../tauriApi.ts";
 
@@ -11,7 +10,7 @@ type propTypes = {
 function SideBar(props: propTypes) {
     const path = props.path;
     const changeFile = props.changeFile;
-    const [filesList, updateFilesList] = useState([""]);
+    const [filesList, updateFilesList] = useState<string[]>([]);
 
     useEffect(() => {
         try {
@@ -38,11 +37,5 @@ function SideBar(props: propTypes) {
         </div>
     );
 }
-
-SideBar.propTypes = {
-    // Define the prop types here
-    changeFile: PropTypes.func.isRequired,
-    path: PropTypes.string.isRequired
-};
 
 export default SideBar;

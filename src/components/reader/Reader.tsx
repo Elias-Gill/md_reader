@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 
 import snarkdown from "snarkdown";
-import { BaseDirectory, readTextFile } from "@tauri-apps/api/fs";
 import hljs from "highlight.js";
+import { openFile } from "../../tauriApi";
 
 type propTypes = {
     // Define the prop types here
@@ -17,7 +17,8 @@ function Reader(props: propTypes) {
     const [content, setcontent] = useState("");
 
     useEffect(() => {
-        setcontent(openFile(currentFile, baseDir));
+        const content = openFile(currentFile, baseDir);
+        setcontent(markdownToHtml(content));
     }, []);
 
     return (
@@ -45,15 +46,9 @@ function markdownToHtml(text: string): string {
     const html = snarkdown(text);
 
     const parser = new DOMParser();
-    let doc = parser.parseFromString(html, "text/html");
+    const doc = parser.parseFromString(html, "text/html");
 
     higlightCode(doc);
 
     return doc.body.innerHTML;
-}
-
-function openFile(file: string, baseDir: string): string {
-    readTextFile(file, { dir: BaseDirectory.Home }).then((value) => {
-        return markdownToHtml(value);
-    });
 }
