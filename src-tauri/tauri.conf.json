@@ -47,6 +47,15 @@
                 "width": 800,
                 "height": 600
             }
-        ]
+        ],
+        "cli": {
+            "args": [
+                {
+                    "name":"file_directory",
+                    "index": 1,
+                    "takesValue": true
+                }
+            ]
+        }
     }
 }

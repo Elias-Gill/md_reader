@@ -2,7 +2,24 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 use std::fs;
 use std::path::Path;
+use std::path::Path;
 
+
+// returns whether a path is a file (1), a directory (2) or it does not exists (3)
+#[tauri::command]
+fn resolve_path(path: String) -> Int8 {
+   let path = Path::new(path);
+
+   if path.is_file() {
+       return 1
+   } else if path.is_dir() {
+       return 2
+   } else {
+       return 3
+   }
+}
+
+// list all files in a path
 #[tauri::command]
 fn files_in_path(path: String) -> Vec<String> {
     let mut paths: Vec<String> = Vec::new();
@@ -23,8 +40,10 @@ fn files_in_path(path: String) -> Vec<String> {
                         continue;
                     }
 
-                    let file = dirty_file.file_name().into_string().unwrap();
-                    paths.push(file);
+                    paths.push(
+                        dirty_file.file_name().
+                        into_string().
+                        unwrap());
                 }
 
                 Err(_) => println!("Ignored path"),
@@ -39,7 +58,7 @@ fn files_in_path(path: String) -> Vec<String> {
 
 fn main() {
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![files_in_path])
+        .invoke_handler(tauri::generate_handler![files_in_path, resolve_path])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { listFiles } from "../../tauriApi.ts";
+import { listFilesInPath } from "../../tauriApi.ts";
 
 type propTypes = {
     // Define the prop types here
@@ -14,7 +14,7 @@ function SideBar(props: propTypes) {
 
     useEffect(() => {
         try {
-            updateFilesList(listFiles(path));
+            updateFilesList(listFilesInPath(path));
         } catch (error) {
             console.log(error);
         }
