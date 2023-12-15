@@ -2,13 +2,12 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 use std::fs;
 use std::path::Path;
-use std::path::Path;
 
 
 // returns whether a path is a file (1), a directory (2) or it does not exists (3)
 #[tauri::command]
-fn resolve_path(path: String) -> Int8 {
-   let path = Path::new(path);
+fn resolve_path(path: String) -> i8 {
+   let path = Path::new(&path);
 
    if path.is_file() {
        return 1
