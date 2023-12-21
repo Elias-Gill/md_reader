@@ -2,14 +2,13 @@ import { useEffect, useState } from "react";
 
 import snarkdown from "snarkdown";
 import hljs from "highlight.js";
-import { openFile } from "../../tauriApi";
+import { openFile } from "../../utils/tauriApi";
 
 type propTypes = {
     // Define the prop types here
-    file: string,
-    baseDir: string
+    file: string;
+    baseDir: string;
 };
-
 
 function Reader(props: propTypes) {
     const currentFile = props.file;
@@ -17,9 +16,11 @@ function Reader(props: propTypes) {
     const [content, setcontent] = useState("");
 
     useEffect(() => {
-        const content = openFile(currentFile, baseDir);
-        setcontent(markdownToHtml(content));
-    }, []);
+        (async () => {
+            const content = await openFile(currentFile, baseDir);
+            setcontent(markdownToHtml(content));
+        })();
+    }, [currentFile, baseDir]);
 
     return (
         <div className="overflow-auto">

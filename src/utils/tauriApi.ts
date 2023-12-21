@@ -1,75 +1,54 @@
 import { invoke } from "@tauri-apps/api/tauri";
-import { BaseDirectory, readTextFile } from "@tauri-apps/api/fs";
-import { getMatches } from "@tauri-apps/api/cli";
-import { exit } from "@tauri-apps/api/process";
+import { readTextFile } from "@tauri-apps/api/fs";
 import { homeDir } from "@tauri-apps/api/path";
+import { getMatches } from "@tauri-apps/api/cli";
 
 export type tauriArguments = {
     path: string;
     file: string;
 };
 
-const ISFILE = 1;
-const ISPATH = 2;
-const NOTEXISTS = 3;
-
-function listFilesInPath(path: string): string[] {
-    invoke("files_in_path", { path: path })
-        .then((response) => {
-            return response;
-        })
-        .catch((error) => {
-            console.error(error);
-        });
-
-    return ["no files"];
+async function listFilesInPath(path: string): Promise<string[]> {
+    return invoke("files_in_path", { path: path });
 }
 
-function openFile(file: string, baseDir: string): string {
+async function openFile(file: string, baseDir: string): Promise<string> {
     try {
-        readTextFile(baseDir + file).then((value) => {
-            return value;
-        });
-    } catch (error) {
-        console.error("Cannot open file: " + error);
+        if (baseDir === "" || file === "") {
+            return "";
+        }
+        return readTextFile(baseDir + file);
+    } catch {
+        return "";
     }
-    return "";
 }
 
-function getHomeDir(): string | void {
-    homeDir().then((value) => {
-        return value;
-    });
+async function pathIsFile(path: string): Promise<boolean> {
+    if (path !== "") {
+        return invoke("path_is_file", { path: path });
+    }
+    return false;
 }
 
-function resolvePath(path: string): number | void {
-    invoke("resolve_path", { path: path })
-        .then((response) => {
-            return response;
-        })
-        .catch((error) => {
-            console.error(error);
-        });
+async function getParentDir(path: string): Promise<string> {
+    if (path !== "") {
+        return invoke("get_parent_dir", { path: path });
+    }
 
-    return NOTEXISTS;
+    const home = await homeDir();
+    return home;
 }
 
 // It matches theh app arguments. Exits with code 1 if cannot parse succesfully.
-function parseArguments(): tauriArguments | void {
-    getMatches().then((matches) => {
-        const dir = matches.args.file_directory.value;
-        const status = resolvePath(dir as string) as number;
+async function parseArguments(): Promise<tauriArguments> {
+    const home = await homeDir();
+    const matches = await getMatches();
+    const dir = matches.args.file_directory.value as string;
 
-        switch (status) {
-            case NOTEXISTS:
-                exit(1);
-                return;
-            case ISFILE:
-                return { path: dir, file: "" };
-            case ISPATH:
-                return { file: dir, path: BaseDirectory.App };
-        }
-    });
+    return {
+        file: "",
+        path: home
+    };
 }
 
-export { parseArguments, getHomeDir, openFile, listFilesInPath };
+export { parseArguments, openFile, listFilesInPath, getParentDir };

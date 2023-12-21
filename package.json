@@ -11,7 +11,7 @@
         "commit": "cz",
         "release": "standard-version",
         "release:beta": "standard-version -p beta",
-        "test": "vitest"
+        "test:frontend": "vitest"
     },
     "dependencies": {
         "@tauri-apps/api": "^1.5.2",
