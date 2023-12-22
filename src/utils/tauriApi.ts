@@ -14,41 +14,26 @@ async function listFilesInPath(path: string): Promise<string[]> {
 
 async function openFile(file: string, baseDir: string): Promise<string> {
     try {
-        if (baseDir === "" || file === "") {
-            return "";
-        }
+        console.log("oppening file: ", baseDir + file);
         return readTextFile(baseDir + file);
     } catch {
         return "";
     }
 }
 
-async function pathIsFile(path: string): Promise<boolean> {
-    if (path !== "") {
-        return invoke("path_is_file", { path: path });
-    }
-    return false;
-}
-
-async function getParentDir(path: string): Promise<string> {
-    if (path !== "") {
-        return invoke("get_parent_dir", { path: path });
-    }
-
-    const home = await homeDir();
-    return home;
-}
-
 // It matches theh app arguments. Exits with code 1 if cannot parse succesfully.
 async function parseArguments(): Promise<tauriArguments> {
-    const home = await homeDir();
+    let path: string = await homeDir();
     const matches = await getMatches();
-    const dir = matches.args.file_directory.value as string;
+
+    if (matches.args.path.occurrences != 0) {
+        path = matches.args.path.value as string;
+    }
 
     return {
-        file: "",
-        path: home
+        file: matches.args.file.value as string,
+        path: path
     };
 }
 
-export { parseArguments, openFile, listFilesInPath, getParentDir };
+export { parseArguments, openFile, listFilesInPath };

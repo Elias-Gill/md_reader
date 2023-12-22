@@ -1,3 +1,70 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+a {
+    text-decoration: underline;
+    color: #ff8dbd;
+}
+
+pre {
+    border-radius: 10px;
+    background: #252525;
+    padding: 12px;
+    overflow: auto;
+}
+
+li>code {
+    background: #252525;
+    color: #8df3f9;
+    border-radius: 3px;
+    padding: 2px 6px;
+}
+
+div>code {
+    background: #252525;
+    color: #8df3f9;
+    border-radius: 3px;
+    padding: 2px 6px;
+}
+
+h1 {
+    font-size: 26px;
+    font-weight: 800;
+    margin: 6px 0;
+}
+
+h2 {
+    font-size: 23px;
+    font-weight: 700;
+    margin: 6px 5px;
+    color: #ffd18d;
+}
+
+h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 6px 10px;
+    color: #ff8dbd;
+}
+
+h4 {
+    font-size: 18px;
+    margin: 6px 15px;
+    font-weight: 600;
+    color: #9dff8d;
+}
+
+h5 {
+    font-size: 18px;
+    margin: 6px 20px;
+    font-weight: 600;
+    color: #8df3f9;
+}
+
+h5 {
+    font-size: 16px;
+    margin: 6px 20px;
+    font-weight: 600;
+    color: #cd8dff;
+}

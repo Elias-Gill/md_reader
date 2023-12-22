@@ -6,16 +6,15 @@
         "distDir": "../dist"
     },
     "package": {
-        "productName": "tauri-app",
+        "productName": "Md-Reader",
         "version": "0.0.0"
     },
     "tauri": {
         "allowlist": {
             "all": false,
             "fs": {
-                "scope": ["$HOME/**", "$HOME"],
+                "scope": ["$HOME/**/*", "$HOME"],
                 "readFile": true,
-                "writeFile": true,
                 "readDir": true,
                 "exists": true
             },
@@ -30,7 +29,7 @@
         "bundle": {
             "active": true,
             "targets": "all",
-            "identifier": "com.tauri.dev",
+            "identifier": "com.github.elias-gill.tauri-md-reader",
             "icon": [
                 "icons/32x32.png",
                 "icons/128x128.png",
@@ -46,7 +45,7 @@
             {
                 "fullscreen": false,
                 "resizable": true,
-                "title": "tauri-app",
+                "title": "Markdown Reader",
                 "width": 800,
                 "height": 600
             }
@@ -54,8 +53,14 @@
         "cli": {
             "args": [
                 {
-                    "name":"file_directory",
+                    "name":"file",
                     "index": 1,
+                    "takesValue": true
+                },
+                {
+                    "name": "path",
+                    "short": "p",
+                    "multipleOccurrences": false,
                     "takesValue": true
                 }
             ]

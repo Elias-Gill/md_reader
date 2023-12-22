@@ -5,24 +5,25 @@ import { parseArguments } from "../utils/tauriApi";
 
 function App() {
     const [currentFile, changeFile] = useState("");
-    const [args, changeArgs] = useState({ file: "", path: "" });
+    const [currentPath, changePath] = useState("");
 
+    // load arguments after initialization
     useEffect(() => {
         (async () => {
-            const aux = await parseArguments();
-            changeArgs(aux);
-            changeFile(aux.file);
+            const args = await parseArguments();
+            changePath(args.path);
+            changeFile(args.file);
         })();
     }, []);
 
     return (
-        <div className="flex justify-around h-screen max-h-screen max-w-6xl mr-auto ml-auto ">
-            <div className="border-r overflow-auto">
-                <SideBar changeFile={changeFile} path={args.path} />
+        <div className="flex h-screen max-h-screen mr-auto ml-auto max-w-128">
+            <div className="w-56 lg:w-sidebar-lg xl:w-sidebar-xl border-r overflow-auto bg-sidebar">
+                <SideBar changeFile={changeFile} path={currentPath} />
             </div>
 
-            <div className="mt-8 flex ml-4 mr-auto">
-                <Reader baseDir={args.path} file={currentFile} />
+            <div className="mb-8 mt-8 flex max-w-xl lg:max-w-2xl xl:max-w-6xl">
+                <Reader baseDir={currentPath} file={currentFile} />
             </div>
         </div>
     );

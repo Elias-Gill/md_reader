@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-
+import { openFile } from "../../utils/tauriApi";
 import snarkdown from "snarkdown";
 import hljs from "highlight.js";
-import { openFile } from "../../utils/tauriApi";
+import "highlight.js/styles/monokai.css";
 
 type propTypes = {
     // Define the prop types here
@@ -10,34 +10,16 @@ type propTypes = {
     baseDir: string;
 };
 
-function Reader(props: propTypes) {
-    const currentFile = props.file;
-    const baseDir = props.baseDir;
-    const [content, setcontent] = useState("");
-
-    useEffect(() => {
-        (async () => {
-            const content = await openFile(currentFile, baseDir);
-            setcontent(markdownToHtml(content));
-        })();
-    }, [currentFile, baseDir]);
-
-    return (
-        <div className="overflow-auto">
-            <div dangerouslySetInnerHTML={{ __html: content }} />;
-        </div>
-    );
-}
-
-export default Reader;
-
 function higlightCode(doc: Document) {
     const elements = doc.querySelectorAll(".code");
     for (let i = 0; i < elements.length; i++) {
-        const language = elements[0].classList[1];
+        let language = elements[0].classList[1];
+        if (language == undefined) {
+            language = "text";
+        }
+        const aux = elements[i].children[0].innerHTML;
 
-        // TODO: replace the code block with highlighted code
-        elements[i].children[0].innerHTML = hljs.highlight("<span>Hello World!</span>", {
+        elements[i].children[0].innerHTML = hljs.highlight(aux, {
             language: language
         }).value;
     }
@@ -53,3 +35,24 @@ function markdownToHtml(text: string): string {
 
     return doc.body.innerHTML;
 }
+
+function Reader(props: propTypes) {
+    const currentFile = props.file;
+    const baseDir = props.baseDir;
+    const [content, setcontent] = useState("");
+
+    useEffect(() => {
+        (async () => {
+            const content = await openFile(currentFile, baseDir);
+            setcontent(markdownToHtml(content));
+        })();
+    }, [currentFile, baseDir]);
+
+    return (
+        <div className="overflow-x-auto overflow-y-auto break-normal ml-12 px-8">
+            <span dangerouslySetInnerHTML={{ __html: content }} />
+        </div>
+    );
+}
+
+export default Reader;
