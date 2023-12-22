@@ -16,7 +16,7 @@ export default {
             },
             width: {
                 "sidebar-xl": "345px",
-                "sidebar-lg": "245px",
+                "sidebar-lg": "245px"
             }
         }
     }
