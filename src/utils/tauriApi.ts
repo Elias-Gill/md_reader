@@ -17,7 +17,11 @@ async function listFilesInPath(path: string): Promise<string[]> {
 }
 
 async function getTimeStamp(file: string, baseDir: string): Promise<number> {
-    return invoke("get_file_timestamp", { path: baseDir + file });
+    try {
+        return invoke("get_file_timestamp", { path: baseDir + file });
+    } catch {
+        return 0;
+    }
 }
 
 function higlightCode(doc: Document) {

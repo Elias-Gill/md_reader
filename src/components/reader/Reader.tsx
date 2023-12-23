@@ -10,21 +10,18 @@ type propTypes = {
 function Reader(props: propTypes) {
     const currentFile = props.file;
     const baseDir = props.baseDir;
+
     const [content, setcontent] = useState("");
     const [oldStamp, setStamp] = useState(0);
-    const [tick, setTick] = useState(false);
 
-    // run a timer that "ticks" for searching file updates every second
-    useEffect(() => {
-        setInterval(() => {
-            setTick(!tick);
-        }, 1000);
-    }, []);
+    const [tick, setTick] = useState(false);
+    const [interval, newInterval] = useState(null);
 
     // this is used to verify if the current file has any changes. It runs on every
     // tick
     useEffect(() => {
         const aux = currentFile;
+
         getTimeStamp(aux, baseDir).then((newStamp) => {
             if (newStamp > oldStamp) {
                 openFile(aux, baseDir).then((content) => {
@@ -36,6 +33,20 @@ function Reader(props: propTypes) {
     }, [tick]);
 
     useEffect(() => {
+        // run a timer that searches file updates every second
+        // Clear the old interval on every file change
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore (have faith)
+        clearInterval(interval);
+
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        newInterval(
+            // @ts-ignore (have faith)
+            setInterval(() => {
+                setTick(!tick);
+            }, 2000)
+        );
+
         (async () => {
             const content = await openFile(currentFile, baseDir);
             setcontent(content);
