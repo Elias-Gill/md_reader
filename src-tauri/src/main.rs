@@ -4,10 +4,33 @@
 use std::fs;
 use std::path::Path;
 mod main_test;
+use filetime::FileTime;
 
 #[tauri::command]
 fn path_is_file(path: String) -> bool {
     return Path::new(&path).is_file();
+}
+
+#[tauri::command]
+fn open_file(path: String) -> String {
+    // unsafe auto CURRENT_OPENED_FILE = path;
+    match fs::read_to_string(path.clone()) {
+        Ok(content) => return content,
+        Err(err) => {
+            return String::from("Cannot open the file: ".to_string() + err.to_string().as_str())
+        }
+    }
+}
+
+#[tauri::command]
+fn get_file_timestamp(path: String) -> i64 {
+    match fs::metadata(path) {
+        Ok(metadata) => return FileTime::from_last_modification_time(&metadata).seconds(),
+        Err(err) => {
+            println!("Cannot open file for time stamp{}", err);
+            return 0;
+        }
+    }
 }
 
 #[tauri::command]
@@ -47,8 +70,10 @@ fn main() {
         .invoke_handler(tauri::generate_handler![
             files_in_path,
             get_parent_dir,
-            path_is_file
+            path_is_file,
+            open_file,
+            get_file_timestamp
         ])
         .run(tauri::generate_context!())
-        .expect("error while running tauri application");
+        .expect("Error while running tauri application");
 }

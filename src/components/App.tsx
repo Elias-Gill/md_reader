@@ -18,7 +18,7 @@ function App() {
 
     return (
         <div className="flex h-screen max-h-screen mr-auto ml-auto max-w-128">
-            <div className="w-56 lg:w-sidebar-lg xl:w-sidebar-xl border-r overflow-auto bg-sidebar">
+            <div className="w-56 lg:w-sidebar-lg xl:w-sidebar-xl border-r border-gray-500 overflow-auto bg-sidebar">
                 <SideBar changeFile={changeFile} path={currentPath} />
             </div>
 

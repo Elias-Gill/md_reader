@@ -1,8 +1,5 @@
 import { useEffect, useState } from "react";
-import { openFile } from "../../utils/tauriApi";
-import snarkdown from "snarkdown";
-import hljs from "highlight.js";
-import "highlight.js/styles/monokai.css";
+import { getTimeStamp, openFile } from "../../utils/tauriApi";
 
 type propTypes = {
     // Define the prop types here
@@ -10,41 +7,38 @@ type propTypes = {
     baseDir: string;
 };
 
-function higlightCode(doc: Document) {
-    const elements = doc.querySelectorAll(".code");
-    for (let i = 0; i < elements.length; i++) {
-        let language = elements[0].classList[1];
-        if (language == undefined) {
-            language = "text";
-        }
-        const aux = elements[i].children[0].innerHTML;
-
-        elements[i].children[0].innerHTML = hljs.highlight(aux, {
-            language: language
-        }).value;
-    }
-}
-
-function markdownToHtml(text: string): string {
-    const html = snarkdown(text);
-
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(html, "text/html");
-
-    higlightCode(doc);
-
-    return doc.body.innerHTML;
-}
-
 function Reader(props: propTypes) {
     const currentFile = props.file;
     const baseDir = props.baseDir;
     const [content, setcontent] = useState("");
+    const [oldStamp, setStamp] = useState(0);
+    const [tick, setTick] = useState(false);
+
+    // run a timer that "ticks" for searching file updates every second
+    useEffect(() => {
+        setInterval(() => {
+            setTick(!tick);
+        }, 1000);
+    }, []);
+
+    // this is used to verify if the current file has any changes. It runs on every
+    // tick
+    useEffect(() => {
+        const aux = currentFile;
+        getTimeStamp(aux, baseDir).then((newStamp) => {
+            if (newStamp > oldStamp) {
+                openFile(aux, baseDir).then((content) => {
+                    setStamp(newStamp);
+                    setcontent(content);
+                });
+            }
+        });
+    }, [tick]);
 
     useEffect(() => {
         (async () => {
             const content = await openFile(currentFile, baseDir);
-            setcontent(markdownToHtml(content));
+            setcontent(content);
         })();
     }, [currentFile, baseDir]);
 
