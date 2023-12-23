@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
-import { listFiles } from "../../tauriApi.ts";
+import { listFilesInPath } from "../../utils/tauriApi.ts";
+import MdIcon from "./MdIcon.tsx";
 
 type propTypes = {
     // Define the prop types here
-    path: string,
-    changeFile: (s: string) => void
+    path: string;
+    changeFile: (s: string) => void;
 };
 
 function SideBar(props: propTypes) {
@@ -14,27 +15,39 @@ function SideBar(props: propTypes) {
 
     useEffect(() => {
         try {
-            updateFilesList(listFiles(path));
+            (async () => {
+                const filesList = await listFilesInPath(path);
+                console.log(filesList);
+                updateFilesList(filesList);
+            })();
         } catch (error) {
             console.log(error);
         }
-    }, []);
+    }, [path]);
 
     return (
-        <div className="mt-8 object-contain w-56">
+        <ul className="mt-8 object-contain">
             {filesList.map((item, index) => {
                 // sidebar button elements
                 const pressed = () => {
                     changeFile(item);
+                    console.log("Selected with sidebar: " + item);
                 };
 
                 return (
-                    <button key={index} onClick={pressed}>
-                        {item}
-                    </button>
+                    <li key={index}>
+                        <button
+                            onClick={pressed}
+                            className="inline-flex items-center rounded-sm w-[100%]
+                        focus:outline-none focus:bg-gray-700 hover:bg-gray-700 pl-3 whitespace-nowrap"
+                        >
+                            <MdIcon />
+                            {item}
+                        </button>
+                    </li>
                 );
             })}
-        </div>
+        </ul>
     );
 }
 

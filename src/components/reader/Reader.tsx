@@ -1,54 +1,63 @@
 import { useEffect, useState } from "react";
-
-import snarkdown from "snarkdown";
-import hljs from "highlight.js";
-import { openFile } from "../../tauriApi";
+import { getTimeStamp, openFile } from "../../utils/tauriApi";
 
 type propTypes = {
     // Define the prop types here
-    file: string,
-    baseDir: string
+    file: string;
+    baseDir: string;
 };
-
 
 function Reader(props: propTypes) {
     const currentFile = props.file;
     const baseDir = props.baseDir;
+
     const [content, setcontent] = useState("");
+    const [oldStamp, setStamp] = useState(0);
+
+    const [tick, setTick] = useState(false);
+    const [interval, newInterval] = useState(null);
+
+    // this is used to verify if the current file has any changes. It runs on every
+    // tick
+    useEffect(() => {
+        const aux = currentFile;
+
+        getTimeStamp(aux, baseDir).then((newStamp) => {
+            if (newStamp > oldStamp) {
+                openFile(aux, baseDir).then((content) => {
+                    setStamp(newStamp);
+                    setcontent(content);
+                });
+            }
+        });
+    }, [tick]);
 
     useEffect(() => {
-        const content = openFile(currentFile, baseDir);
-        setcontent(markdownToHtml(content));
-    }, []);
+        // run a timer that searches file updates every second
+        // Clear the old interval on every file change
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore (have faith)
+        clearInterval(interval);
+
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        newInterval(
+            // @ts-ignore (have faith)
+            setInterval(() => {
+                setTick(!tick);
+            }, 2000)
+        );
+
+        (async () => {
+            const content = await openFile(currentFile, baseDir);
+            setcontent(content);
+        })();
+    }, [currentFile, baseDir]);
 
     return (
-        <div className="overflow-auto">
-            <div dangerouslySetInnerHTML={{ __html: content }} />;
+        <div className="overflow-x-auto overflow-y-auto break-normal ml-12 px-8">
+            <span dangerouslySetInnerHTML={{ __html: content }} />
         </div>
     );
 }
 
 export default Reader;
-
-function higlightCode(doc: Document) {
-    const elements = doc.querySelectorAll(".code");
-    for (let i = 0; i < elements.length; i++) {
-        const language = elements[0].classList[1];
-
-        // TODO: replace the code block with highlighted code
-        elements[i].children[0].innerHTML = hljs.highlight("<span>Hello World!</span>", {
-            language: language
-        }).value;
-    }
-}
-
-function markdownToHtml(text: string): string {
-    const html = snarkdown(text);
-
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(html, "text/html");
-
-    higlightCode(doc);
-
-    return doc.body.innerHTML;
-}
