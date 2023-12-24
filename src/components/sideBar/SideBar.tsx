@@ -26,7 +26,7 @@ function SideBar(props: propTypes) {
     }, [path]);
 
     return (
-        <ul className="mt-8 object-contain">
+        <ul className="mb-8 mt-8 w-max">
             {filesList.map((item, index) => {
                 // sidebar button elements
                 const pressed = () => {
@@ -39,7 +39,7 @@ function SideBar(props: propTypes) {
                         <button
                             onClick={pressed}
                             className="inline-flex items-center rounded-sm w-[100%]
-                        focus:outline-none focus:bg-gray-700 hover:bg-gray-700 pl-3 whitespace-nowrap"
+                        focus:outline-none focus:bg-gray-700 hover:bg-gray-700 px-3 whitespace-nowrap"
                         >
                             <MdIcon />
                             {item}

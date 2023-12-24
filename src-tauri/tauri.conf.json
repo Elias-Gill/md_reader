@@ -13,7 +13,7 @@
         "allowlist": {
             "all": false,
             "fs": {
-                "scope": ["$HOME/**/*", "$HOME"],
+                "scope": ["$HOME/**/*", "$HOME", "$HOME/**"],
                 "readFile": true,
                 "readDir": true,
                 "exists": true

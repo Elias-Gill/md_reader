@@ -18,7 +18,7 @@ async function listFilesInPath(path: string): Promise<string[]> {
 
 async function getTimeStamp(file: string, baseDir: string): Promise<number> {
     try {
-        return invoke("get_file_timestamp", { path: baseDir + file });
+        return invoke("get_file_timestamp", { path: baseDir + "/" + file });
     } catch {
         return 0;
     }
@@ -53,9 +53,10 @@ function markdownToHtml(text: string): string {
 async function openFile(file: string, baseDir: string): Promise<string> {
     try {
         console.log("oppening file: ", baseDir + file);
-        const content = await readTextFile(baseDir + file);
+        const content = await readTextFile(baseDir + "/" + file);
         return markdownToHtml(content);
-    } catch {
+    } catch (err) {
+        console.log("Cannot open file: ", err);
         return "";
     }
 }
@@ -65,6 +66,7 @@ async function parseArguments(): Promise<tauriArguments> {
     let path: string = await homeDir();
     const matches = await getMatches();
 
+    // if path argument is provided
     if (matches.args.path.occurrences != 0) {
         path = matches.args.path.value as string;
     }
