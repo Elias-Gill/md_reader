@@ -26,7 +26,7 @@ function SideBar(props: propTypes) {
     }, [path]);
 
     return (
-        <ul className="mb-8 mt-8 w-max">
+        <ul className="mb-8 mt-8 w-[100%]">
             {filesList.map((item, index) => {
                 // sidebar button elements
                 const pressed = () => {

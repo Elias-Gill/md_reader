@@ -52,7 +52,7 @@ function markdownToHtml(text: string): string {
 
 async function openFile(file: string, baseDir: string): Promise<string> {
     try {
-        console.log("oppening file: ", baseDir + file);
+        console.log("oppening file: ", baseDir + "/" + file);
         const content = await readTextFile(baseDir + "/" + file);
         return markdownToHtml(content);
     } catch (err) {
