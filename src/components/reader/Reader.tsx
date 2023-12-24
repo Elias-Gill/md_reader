@@ -14,7 +14,7 @@ function Reader(props: propTypes) {
     const [content, setcontent] = useState("");
     const [oldStamp, setStamp] = useState(0);
 
-    const [tick, setTick] = useState(false);
+    const [tick, setTick] = useState(0);
     const [interval, newInterval] = useState(null);
 
     // this is used to verify if the current file has any changes. It runs on every
@@ -38,13 +38,13 @@ function Reader(props: propTypes) {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore (have faith)
         clearInterval(interval);
-
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         newInterval(
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore (have faith)
             setInterval(() => {
-                setTick(!tick);
-            }, 2000)
+                setTick(Date.now());
+                console.log(tick);
+            }, 1300)
         );
 
         (async () => {
