@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getTimeStamp, openFile } from "../../utils/tauriApi";
+import { markdownToHtml } from "./utils";
 
 type propTypes = {
     // Define the prop types here
@@ -26,7 +27,7 @@ function Reader(props: propTypes) {
             if (newStamp > oldStamp) {
                 openFile(aux, baseDir).then((content) => {
                     setStamp(newStamp);
-                    setcontent(content);
+                    setcontent(markdownToHtml(content));
                 });
             }
         });
@@ -49,7 +50,7 @@ function Reader(props: propTypes) {
 
         (async () => {
             const content = await openFile(currentFile, baseDir);
-            setcontent(content);
+            setcontent(markdownToHtml(content));
         })();
     }, [currentFile, baseDir]);
 

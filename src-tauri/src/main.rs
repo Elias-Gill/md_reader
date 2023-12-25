@@ -72,7 +72,7 @@ fn main() {
             get_parent_dir,
             path_is_file,
             open_file,
-            get_file_timestamp
+            get_file_timestamp,
         ])
         .run(tauri::generate_context!())
         .expect("Error while running tauri application");
