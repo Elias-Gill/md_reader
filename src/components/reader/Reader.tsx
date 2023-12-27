@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getTimeStamp, openFile } from "../../utils/tauriApi";
 import { markdownToHtml } from "./utils";
+import "./styles.css";
 
 type propTypes = {
     // Define the prop types here
@@ -33,15 +34,15 @@ function Reader(props: propTypes) {
         });
     }, [tick]);
 
+    // run a timer that searches file updates every second
+    // Clear the old interval on every file change
     useEffect(() => {
-        // run a timer that searches file updates every second
-        // Clear the old interval on every file change
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore (have faith)
         clearInterval(interval);
         newInterval(
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore (have faith)
+            // @ts-ignore
             setInterval(() => {
                 setTick(Date.now());
                 console.log(tick);
@@ -55,8 +56,10 @@ function Reader(props: propTypes) {
     }, [currentFile, baseDir]);
 
     return (
-        <div className="overflow-x-auto overflow-y-auto break-normal ml-12 px-8">
-            <span dangerouslySetInnerHTML={{ __html: content }} />
+        <div className="mb-8 mt-8 flex max-w-xl lg:max-w-2xl xl:max-w-6xl">
+            <div className="overflow-x-auto overflow-y-auto break-normal ml-12 px-8">
+                <span dangerouslySetInnerHTML={{ __html: content }} />
+            </div>
         </div>
     );
 }

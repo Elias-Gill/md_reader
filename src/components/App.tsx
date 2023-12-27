@@ -18,13 +18,9 @@ function App() {
 
     return (
         <div className="flex h-screen max-h-screen mr-auto ml-auto max-w-128">
-            <div className="w-56 lg:w-sidebar-lg xl:w-sidebar-xl border-r border-gray-500 overflow-auto bg-sidebar">
-                <SideBar changeFile={changeFile} path={currentPath} />
-            </div>
+            <SideBar changeFile={changeFile} path={currentPath} />
 
-            <div className="mb-8 mt-8 flex max-w-xl lg:max-w-2xl xl:max-w-6xl">
-                <Reader baseDir={currentPath} file={currentFile} />
-            </div>
+            <Reader baseDir={currentPath} file={currentFile} />
         </div>
     );
 }

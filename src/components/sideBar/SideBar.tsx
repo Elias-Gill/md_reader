@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { listFilesInPath } from "../../utils/tauriApi.ts";
-import MdIcon from "./MdIcon.tsx";
+import File from "./File.tsx";
+import { IconContext } from "react-icons";
+import * as FaIcons from "react-icons/fa";
 
 type propTypes = {
     // Define the prop types here
@@ -13,6 +15,10 @@ function SideBar(props: propTypes) {
     const changeFile = props.changeFile;
     const [filesList, updateFilesList] = useState<string[]>([]);
 
+    const [sidebar, setSidebar] = useState(false);
+    const showSidebar = () => setSidebar(!sidebar);
+
+    // list files on path change
     useEffect(() => {
         try {
             (async () => {
@@ -26,28 +32,27 @@ function SideBar(props: propTypes) {
     }, [path]);
 
     return (
-        <ul className="mb-8 mt-8 w-[100%]">
-            {filesList.map((item, index) => {
-                // sidebar button elements
-                const pressed = () => {
-                    changeFile(item);
-                    console.log("Selected with sidebar: " + item);
-                };
+        <IconContext.Provider value={{ color: "#fff" }}>
+            <nav
+                className={
+                    sidebar
+                        ? ""
+                        : "hidden" +
+                          "w-56 lg:w-sidebar-lg xl:w-sidebar-xl border-r border-gray-500 overflow-auto bg-sidebar"
+                }
+            >
+                <button onClick={showSidebar}>
+                    <FaIcons.FaBars />
+                </button>
 
-                return (
-                    <li key={index}>
-                        <button
-                            onClick={pressed}
-                            className="inline-flex items-center rounded-sm w-[100%]
-                        focus:outline-none focus:bg-gray-700 hover:bg-gray-700 px-3 whitespace-nowrap"
-                        >
-                            <MdIcon />
-                            {item}
-                        </button>
-                    </li>
-                );
-            })}
-        </ul>
+                <ul className="mb-8 mt-8 w-[100%] ">
+                    {filesList.map((item, index) => {
+                        return <File key={index} item={item} callback={changeFile} />;
+                    })}
+                    <li>un elemtno guaug</li>
+                </ul>
+            </nav>
+        </IconContext.Provider>
     );
 }
 
