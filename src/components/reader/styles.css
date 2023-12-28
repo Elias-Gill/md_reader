@@ -68,6 +68,12 @@ em {
     color: #ff8f8d
 }
 
+span>ul {
+    padding-left: 38px;
+    padding-top: 15px;
+    list-style-type: circle;
+}
+
 /* CUSTOM SCROLLBAR */
 ::-webkit-scrollbar {
     width: 5px;

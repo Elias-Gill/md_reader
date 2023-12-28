@@ -13,7 +13,7 @@ export default function File(args: propTypes) {
     };
 
     return (
-        <li>
+        <li className="list-none">
             <button
                 onClick={pressed}
                 className="inline-flex items-center rounded-sm w-[100%]

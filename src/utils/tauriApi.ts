@@ -26,8 +26,9 @@ async function getParentDir(file: string): Promise<string> {
 
 async function openFile(file: string, baseDir: string): Promise<string> {
     try {
-        console.log("oppening file: ", baseDir + "/" + file);
-        const content = await readTextFile(baseDir + "/" + file);
+        console.log("oppening file: ", file + "/" + baseDir);
+        const f = await resolve(baseDir, file)
+        const content = await readTextFile(f);
         return content;
     } catch (err) {
         console.log("Cannot open file: ", err);
