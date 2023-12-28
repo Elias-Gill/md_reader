@@ -34,7 +34,7 @@ function App() {
                 <SideBar changeFile={changeFile} path={currentPath} />
             </div>
 
-            <div className="max-w-xl lg:max-w-2xl xl:max-w-6xl flex overflow-x-auto overflow-y-auto">
+            <div className="max-w-xl md:max-w-3xl lg:max-w-4xl xl:max-w-7xl flex overflow-x-auto overflow-y-auto">
                 <Reader baseDir={currentPath} file={currentFile} />
             </div>
         </div>
