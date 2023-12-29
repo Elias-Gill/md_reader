@@ -5,7 +5,7 @@ import "highlight.js/styles/monokai.css";
 function higlightCode(doc: Document) {
     const elements = doc.querySelectorAll(".code");
     for (let i = 0; i < elements.length; i++) {
-        let language = hljs.getLanguage(elements[0].classList[1])?.name;
+        let language = hljs.getLanguage(elements[i].classList[1])?.name;
         if (language == undefined) {
             language = "text";
         }
