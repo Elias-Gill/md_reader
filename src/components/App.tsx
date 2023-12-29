@@ -5,8 +5,8 @@ import { parseArguments } from "../utils/tauriApi";
 import BurgerIcon from "./sideBar/BurgerIcon";
 
 function App() {
-    const [currentFile, changeFile] = useState("");
-    const [currentPath, changePath] = useState("");
+    const [currentFile, changeFile] = useState(" ");
+    const [currentPath, changePath] = useState(" ");
     const [isOpen, setOpen] = useState(false);
 
     // load arguments after initialization

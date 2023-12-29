@@ -27,7 +27,6 @@ fn get_file_timestamp(path: String) -> i64 {
     match fs::metadata(path) {
         Ok(metadata) => return FileTime::from_last_modification_time(&metadata).seconds(),
         Err(err) => {
-            println!("Cannot open file for time stamp{}", err);
             return 0;
         }
     }
@@ -65,6 +64,11 @@ fn files_in_path(path: String) -> Vec<String> {
     return files;
 }
 
+#[tauri::command]
+fn print_tauri(msg: String) {
+    println!("{}", msg);
+}
+
 fn main() {
     tauri::Builder::default()
         .invoke_handler(tauri::generate_handler![
@@ -73,6 +77,7 @@ fn main() {
             path_is_file,
             open_file,
             get_file_timestamp,
+            print_tauri,
         ])
         .run(tauri::generate_context!())
         .expect("Error while running tauri application");
