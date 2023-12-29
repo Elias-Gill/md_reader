@@ -26,7 +26,6 @@ function Reader(props: propTypes) {
 
         getTimeStamp(aux, baseDir).then((newStamp) => {
             if (newStamp > oldStamp) {
-
                 openFile(aux, baseDir).then((content) => {
                     setStamp(newStamp);
                     setcontent(markdownToHtml(content));
@@ -57,10 +56,8 @@ function Reader(props: propTypes) {
     }, [currentFile, baseDir]);
 
     return (
-        <div className="mb-8 mt-8">
-            <div className="break-normal ml-12 px-8">
-                <span dangerouslySetInnerHTML={{ __html: content }} />
-            </div>
+        <div className="break-normal ml-12 px-8">
+            <span dangerouslySetInnerHTML={{ __html: content }} />
         </div>
     );
 }
