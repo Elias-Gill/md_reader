@@ -52,6 +52,7 @@ async function parseArguments(): Promise<tauriArguments> {
     } else if (matches.args.path.occurrences > 0) {
         path = await normalize(path as string);
         path = await resolve(".", path);
+        file = "";
     } else {
         path = await resolve(".");
         file = "";

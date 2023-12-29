@@ -24,41 +24,41 @@ code {
 }
 
 h1 {
-    font-size: 26px;
+    font-size: 23px;
     font-weight: 800;
     margin: 6px 0;
 }
 
 h2 {
-    font-size: 23px;
+    font-size: 20px;
     font-weight: 700;
     margin: 6px 10px;
     color: #ffd18d;
 }
 
 h3 {
-    font-size: 20px;
+    font-size: 17px;
     font-weight: 700;
     margin: 6px 20px;
     color: #ff8dbd;
 }
 
 h4 {
-    font-size: 18px;
+    font-size: 15px;
     margin: 6px 30px;
     font-weight: 600;
     color: #9dff8d;
 }
 
 h5 {
-    font-size: 18px;
+    font-size: 15px;
     margin: 6px 40px;
     font-weight: 600;
     color: #8df3f9;
 }
 
 h5 {
-    font-size: 16px;
+    font-size: 13px;
     margin: 6px 50px;
     font-weight: 600;
     color: #cd8dff;
