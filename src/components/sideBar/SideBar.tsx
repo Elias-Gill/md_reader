@@ -13,9 +13,6 @@ function SideBar(props: propTypes) {
     const changeFile = props.changeFile;
     const [filesList, updateFilesList] = useState<string[]>([]);
 
-    const [sidebar, setSidebar] = useState(false);
-    const showSidebar = () => setSidebar(!sidebar);
-
     // list files on path change
     useEffect(() => {
         try {

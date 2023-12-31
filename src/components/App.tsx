@@ -27,7 +27,7 @@ function App() {
             </div>
 
             <div
-                className={` transition-all duration-75 ${
+                className={`transition-all duration-75 ${
                     isOpen ? "w-56 lg:w-sidebar-lg xl:w-sidebar-xl" : "w-0"
                 } border-r border-gray-500 overflow-auto bg-sidebar`}
             >

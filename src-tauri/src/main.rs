@@ -26,7 +26,7 @@ fn open_file(path: String) -> String {
 fn get_file_timestamp(path: String) -> i64 {
     match fs::metadata(path) {
         Ok(metadata) => return FileTime::from_last_modification_time(&metadata).seconds(),
-        Err(err) => {
+        Err(_err) => {
             return 0;
         }
     }
