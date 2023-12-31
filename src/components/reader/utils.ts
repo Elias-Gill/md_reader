@@ -1,31 +1,31 @@
-import snarkdown from "snarkdown";
+import { marked } from "marked";
+
 import hljs from "highlight.js";
 import "highlight.js/styles/monokai.css";
 
-function higlightCode(doc: Document) {
-    const elements = doc.querySelectorAll(".code");
-    for (let i = 0; i < elements.length; i++) {
-        let language = hljs.getLanguage(elements[i].classList[1])?.name;
-        if (language == undefined) {
-            language = "text";
+export async function markdownToHtml(text: string): Promise<string> {
+    marked.use({
+        pedantic: false,
+        gfm: false
+    });
+
+    // Override some default renderes
+    const renderer = {
+        code(code: string, language: string | undefined, _espaced: boolean) {
+            if (language == undefined) {
+                language = "text";
+            }
+
+            return `<pre><code>${
+                hljs.highlight(code, {
+                    language: language
+                }).value
+            }</code></pre>`;
         }
+    };
 
-        // a copy of the code block
-        const aux = elements[i].children[0].innerHTML;
-        // highlight the code block
-        elements[i].children[0].innerHTML = hljs.highlight(aux, {
-            language: language
-        }).value;
-    }
-}
+    marked.use({ renderer });
 
-export function markdownToHtml(text: string): string {
-    const html = snarkdown(text);
-
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(html, "text/html");
-
-    higlightCode(doc);
-
-    return doc.body.innerHTML;
+    const html = await marked.parse(text);
+    return html;
 }

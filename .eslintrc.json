@@ -10,7 +10,11 @@
         "plugin:@typescript-eslint/eslint-recommended",
         "plugin:@typescript-eslint/recommended"
     ],
-    "plugins": ["react", "@typescript-eslint", "react-hooks"],
+    "plugins": [
+        "react",
+        "@typescript-eslint",
+        "react-hooks"
+    ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "ecmaVersion": 12,
@@ -20,10 +24,31 @@
         }
     },
     "rules": {
-        "semi": ["error", "always"],
-        "quotes": ["error", "double"],
-        "indent": ["error", 4, { "SwitchCase": 1 }],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "quotes": [
+            "error",
+            "double"
+        ],
+        "indent": [
+            "error",
+            4,
+            {
+                "SwitchCase": 1
+            }
+        ],
         "react/react-in-jsx-scope": "off",
-        "react/jsx-uses-react": "off"
+        "react/jsx-uses-react": "off",
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": [
+            "error",
+            {
+                "argsIgnorePattern": "^_",
+                "varsIgnorePattern": "^_",
+                "caughtErrorsIgnorePattern": "^_"
+            }
+        ]
     }
 }

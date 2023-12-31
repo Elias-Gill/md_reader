@@ -28,7 +28,9 @@ function Reader(props: propTypes) {
             if (newStamp > oldStamp) {
                 openFile(aux, baseDir).then((content) => {
                     setStamp(newStamp);
-                    setcontent(markdownToHtml(content));
+                    markdownToHtml(content).then((t) => {
+                        setcontent(t);
+                    });
                 });
             }
         });
@@ -51,7 +53,9 @@ function Reader(props: propTypes) {
 
         (async () => {
             const content = await openFile(currentFile, baseDir);
-            setcontent(markdownToHtml(content));
+            markdownToHtml(content).then((t) => {
+                setcontent(t);
+            });
         })();
     }, [currentFile, baseDir]);
 
