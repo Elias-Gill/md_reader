@@ -18,11 +18,11 @@ function SideBar(props: propTypes) {
         try {
             (async () => {
                 const filesList = await listFilesInPath(path);
-                console.log(filesList);
+                console.log(`Files listed in ${path}: `, filesList);
                 updateFilesList(filesList);
             })();
         } catch (error) {
-            console.log(error);
+            console.log("Cannot list files: " + error);
         }
     }, [path]);
 

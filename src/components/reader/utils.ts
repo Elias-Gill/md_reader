@@ -12,15 +12,27 @@ export async function markdownToHtml(text: string): Promise<string> {
     // Override some default renderes
     const renderer = {
         code(code: string, language: string | undefined, _espaced: boolean) {
-            if (language == undefined) {
-                language = "text";
-            }
+            try {
+                // NOTE: this looks ridiculous
+                if (language == undefined) {
+                    language = "text";
+                }
 
-            return `<pre><code>${
-                hljs.highlight(code, {
-                    language: language
-                }).value
-            }</code></pre>`;
+                language = hljs.getLanguage(language)?.name;
+
+                if (language == undefined) {
+                    language = "text";
+                }
+
+                return `<pre><code>${
+                    hljs.highlight(code, {
+                        language: language
+                    }).value
+                }</code></pre>`;
+            } catch {
+                // if we cannot highlight the code, just return it
+                return `<pre><code>${code}</code></pre>`;
+            }
         }
     };
 

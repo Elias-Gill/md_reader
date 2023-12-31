@@ -9,7 +9,7 @@ type propTypes = {
 export default function File(args: propTypes) {
     const pressed = () => {
         args.callback(args.item);
-        console.log("Selected with sidebar: " + args.item);
+        console.log("Selected with sidebar: ", args.item);
     };
 
     return (

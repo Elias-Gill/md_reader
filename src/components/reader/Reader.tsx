@@ -47,7 +47,6 @@ function Reader(props: propTypes) {
             // @ts-ignore
             setInterval(() => {
                 setTick(Date.now());
-                console.log(tick);
             }, 1300)
         );
 

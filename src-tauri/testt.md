@@ -1,45 +1,36 @@
-# Pre-release
-- nad ad elos laksjdlaksj
-- nad ad elos laksjdlaksj
-- nad ad elos laksjdlaksj
-- nad ad elos laksjdlaksj
-- nad ad elos laksjdlaksj
-- [nada de nada](https://github.com/elias-gill/)
+# Conventional commits, a good practice
+## Definition
+Conventional Commits is a specification for writing commit messages in a way that is easy for humans and machines to understand. It defines a standard format for commit messages, which consists of the following parts:
 
-```typescript
-function code(code: string, language: string | undefined, _espaced: boolean) {
-    if (language == undefined) {
-        language = "text";
-    }
+### Parts
+Type: The type of commit, such as feat, fix, docs, or chore.
+Scope: The scope of the change, such as a-file, a-module, or the-project.
+Description: A brief description of the change.
+Breaking change: An optional section to indicate if the commit introduces a breaking change.
 
-    return `<pre><code>${
-        hljs.highlight(code, {
-            language: language
-        }).value
-    }</code></pre>`;
-}
+### Usage example
 ```
-
-Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim labore culpa sint ad nisi Lorem pariatur mollit ex esse exercitation amet. Nisi anim cupidatat excepteur officia. Reprehenderit nostrud nostrud ipsum Lorem est aliquip amet voluptate voluptate dolor minim nulla est proident. Nostrud officia pariatur ut officia. Sit irure elit esse ea nulla sunt ex occaecat reprehenderit commodo officia dolor Lorem duis laboris cupidatat officia voluptate. Culpa proident adipisicing id nulla nisi laboris ex in Lorem sunt duis officia eiusmod. Aliqua reprehenderit commodo ex non excepteur duis sunt velit enim. Voluptate laboris sint cupidatat ullamco ut ea consectetur et est culpa et culpa duis.
-
-- unas listas
-- unas listas
-- unas listas
-- `nada de nada`: listas
-- unas listas
-- unas listas
-- unas listas
-- `nada de nada`: listas
- 
-Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim labore culpa sint ad nisi Lorem pariatur mollit ex esse exercitation amet. Nisi anim cupidatat excepteur officia. Reprehenderit nostrud nostrud ipsum Lorem est aliquip amet voluptate voluptate dolor minim nulla est proident. Nostrud officia pariatur ut officia. Sit irure elit esse ea nulla sunt ex occaecat reprehenderit commodo officia dolor Lorem duis laboris cupidatat officia voluptate. Culpa proident adipisicing id nulla nisi laboris ex in Lorem sunt duis officia eiusmod. Aliqua reprehenderit commodo ex non excepteur duis sunt velit enim. Voluptate laboris sint cupidatat ullamco ut ea consectetur et est culpa et culpa duis.
- 
-```python
-def nuevo():
-    return "nad  de nad d elos nadas"
+feat: add a new button to the UI
+fix: fix a bug in the login form
+docs: update the documentation for the new API
+chore: update the build script
+feat(a-file): add a new field to the configuration file
+fix(a-module): fix a bug in the rendering engine
 ```
-Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim labore culpa sint ad nisi Lorem pariatur mollit ex esse exercitation amet. Nisi anim cupidatat excepteur officia. Reprehenderit nostrud nostrud ipsum Lorem est aliquip amet voluptate voluptate dolor minim nulla est proident. Nostrud officia pariatur ut officia. Sit irure elit esse ea nulla sunt ex occaecat reprehenderit commodo officia dolor Lorem duis laboris cupidatat officia voluptate. Culpa proident adipisicing id nulla nisi laboris ex in Lorem sunt duis officia eiusmod. Aliqua reprehenderit commodo ex non excepteur duis sunt velit enim. Voluptate laboris sint cupidatat ullamco ut ea consectetur et est culpa et culpa duis.
+To use conventional commits, you can use a git hook or a tool like commitizen: https://commitizen.github.io/cz-cli/ to help you write the commit messages in the correct format.
 
-Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim labore culpa sint ad nisi Lorem pariatur mollit ex esse exercitation amet. Nisi anim cupidatat excepteur officia. Reprehenderit nostrud nostrud ipsum Lorem est aliquip amet voluptate voluptate dolor minim nulla est proident. Nostrud officia pariatur ut officia. Sit irure elit esse ea nulla sunt ex occaecat reprehenderit commodo officia dolor Lorem duis laboris cupidatat officia voluptate. Culpa proident adipisicing id nulla nisi laboris ex in Lorem sunt duis officia eiusmod. Aliqua reprehenderit commodo ex non excepteur duis sunt velit enim. Voluptate laboris sint cupidatat ullamco ut ea consectetur et est culpa et culpa duis.
+## Benefits
+Here are some of the benefits of using conventional commits:
 
+It makes it easier for humans to understand the changes that have been made to a project.
+It makes it easier for machines to parse commit messages and generate change logs, changelogs, and other documentation.
+It helps to ensure that commit messages are consistent and easy to find.
 
-Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim labore culpa sint ad nisi Lorem pariatur mollit ex esse exercitation amet. Nisi anim cupidatat excepteur officia. Reprehenderit nostrud nostrud ipsum Lorem est aliquip amet voluptate voluptate dolor minim nulla est proident. Nostrud officia pariatur ut officia. Sit irure elit esse ea nulla sunt ex occaecat reprehenderit commodo officia dolor Lorem duis laboris cupidatat officia voluptate. Culpa proident adipisicing id nulla nisi laboris ex in Lorem sunt duis officia eiusmod. Aliqua reprehenderit commodo ex non excepteur duis sunt velit enim. Voluptate laboris sint cupidatat ullamco ut ea consectetur et est culpa et culpa duis.
+If you are working on a project that uses conventional commits, I encourage you to follow the specification and write clear and concise commit messages. It will make your project easier to maintain and understand for everyone involved.
+
+## Aditional resources
+Here are some additional resources that you may find helpful:
+
+- Conventional Commits website: [https://www.conventionalcommits.org/en/v1.0.0/]
+- Commitizen documentation: [https://commitizen.github.io/cz-cli/]
+- Writing good commit messages: [https://blog.devgenius.io/writing-good-commit-messages-with-conventional-commits-8a40e99da2de]
