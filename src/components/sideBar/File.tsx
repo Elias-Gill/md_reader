@@ -9,11 +9,11 @@ type propTypes = {
 export default function File(args: propTypes) {
     const pressed = () => {
         args.callback(args.item);
-        console.log("Selected with sidebar: " + args.item);
+        console.log("Selected with sidebar: ", args.item);
     };
 
     return (
-        <li>
+        <li className="list-none">
             <button
                 onClick={pressed}
                 className="inline-flex items-center rounded-sm w-[100%]

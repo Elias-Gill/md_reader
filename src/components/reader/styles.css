@@ -8,12 +8,17 @@ a {
     color: #bfc8ff;
 }
 
+p {
+    margin: 15px 0;
+}
+
 pre {
     border-radius: 5px;
     background: #252525;
     padding: 12px;
-    margin: 8px;
+    margin: 20px 8px;
     overflow: auto;
+    max-width: 65vw;
 }
 
 code {
@@ -21,44 +26,45 @@ code {
     color: #8df3f9;
     border-radius: 3px;
     padding: 2px 6px;
+    overflow: auto;
 }
 
 h1 {
-    font-size: 26px;
+    font-size: 25px;
     font-weight: 800;
     margin: 6px 0;
 }
 
 h2 {
-    font-size: 23px;
+    font-size: 22px;
     font-weight: 700;
     margin: 6px 10px;
     color: #ffd18d;
 }
 
 h3 {
-    font-size: 20px;
+    font-size: 19px;
     font-weight: 700;
     margin: 6px 20px;
     color: #ff8dbd;
 }
 
 h4 {
-    font-size: 18px;
+    font-size: 17px;
     margin: 6px 30px;
     font-weight: 600;
     color: #9dff8d;
 }
 
 h5 {
-    font-size: 18px;
+    font-size: 17px;
     margin: 6px 40px;
     font-weight: 600;
     color: #8df3f9;
 }
 
-h5 {
-    font-size: 16px;
+h6 {
+    font-size: 15px;
     margin: 6px 50px;
     font-weight: 600;
     color: #cd8dff;
@@ -66,6 +72,11 @@ h5 {
 
 em {
     color: #ff8f8d
+}
+
+span>ul {
+    padding-left: 38px;
+    list-style-type: circle;
 }
 
 /* CUSTOM SCROLLBAR */

@@ -16,10 +16,9 @@
     "dependencies": {
         "@tauri-apps/api": "^1.5.2",
         "highlight.js": "^11.9.0",
+        "marked": "^11.1.1",
         "react": "^18.2.0",
-        "react-dom": "^18.2.0",
-        "react-icons": "^4.12.0",
-        "snarkdown": "^2.0.0"
+        "react-dom": "^18.2.0"
     },
     "devDependencies": {
         "@tauri-apps/cli": "^1.5.7",
@@ -29,14 +28,12 @@
         "@typescript-eslint/parser": "^6.14.0",
         "@vitejs/plugin-react": "^4.0.3",
         "autoprefixer": "^10.4.16",
-        "chai": "^4.3.10",
         "cz-conventional-changelog": "^3.3.0",
         "eslint": "^8.56.0",
         "eslint-config-prettier": "^9.1.0",
         "eslint-plugin-react": "^7.33.2",
         "eslint-plugin-react-hooks": "^4.6.0",
         "jsdom": "^23.0.1",
-        "mocha": "^10.2.0",
         "postcss": "^8.4.32",
         "prettier": "^3.1.0",
         "standard-version": "^9.5.0",
