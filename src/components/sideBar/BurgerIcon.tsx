@@ -1,5 +1,5 @@
 import Svg from "../../assets/burger-menu.svg";
-import "./styles.css"
+import "./styles.css";
 
 export default function BurgerIcon() {
     return (

@@ -35,7 +35,11 @@ function App() {
             </div>
 
             <div className="max-w-xl md:max-w-3xl lg:max-w-4xl xl:max-w-6xl flex overflow-x-auto overflow-y-auto my-8">
-                <Reader baseDir={currentPath} file={currentFile} changeFile={changeFile} />
+                <Reader
+                    baseDir={currentPath}
+                    file={currentFile}
+                    changeFile={changeFile}
+                />
             </div>
         </div>
     );
