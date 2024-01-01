@@ -1,3 +1,4 @@
+- [../README.md](./../README.md)
 # Conventional commits, a good practice
 ## Definition
 Conventional Commits is a specification for writing commit messages in a way that is easy for humans and machines to understand. It defines a standard format for commit messages, which consists of the following parts:
@@ -17,7 +18,7 @@ chore: update the build script
 feat(a-file): add a new field to the configuration file
 fix(a-module): fix a bug in the rendering engine
 ```
-To use conventional commits, you can use a git hook or a tool like commitizen: https://commitizen.github.io/cz-cli/ to help you write the commit messages in the correct format.
+To use conventional commits, you can use a git hook or a tool like [commitizen](https://commitizen.github.io/cz-cli/) to help you write the commit messages in the correct format.
 
 ## Benefits
 Here are some of the benefits of using conventional commits:
@@ -31,6 +32,5 @@ If you are working on a project that uses conventional commits, I encourage you 
 ## Aditional resources
 Here are some additional resources that you may find helpful:
 
-- Conventional Commits website: [https://www.conventionalcommits.org/en/v1.0.0/]
-- Commitizen documentation: [https://commitizen.github.io/cz-cli/]
-- Writing good commit messages: [https://blog.devgenius.io/writing-good-commit-messages-with-conventional-commits-8a40e99da2de]
+- [Conventional Commits website](https://www.conventionalcommits.org/en/v1.0.0/)
+- [Writing good commit messages](https://blog.devgenius.io/writing-good-commit-messages-with-conventional-commits-8a40e99da2de)
