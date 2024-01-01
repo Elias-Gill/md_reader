@@ -30,12 +30,14 @@ async function getParentDir(file: string): Promise<string> {
 
 async function openFile(file: string, baseDir: string): Promise<string> {
     try {
-        console.log("Oppening file: ", baseDir  + sep + file);
+        console.log("Oppening file: ", baseDir + sep + file);
+        printTauri("Oppening file: " + baseDir + sep + file);
         const f = await resolve(baseDir, file);
         const content = await readTextFile(f);
         return content;
     } catch (err) {
         console.log("Cannot open file: ", err);
+        printTauri("Cannot open file: " + err);
         return "";
     }
 }
