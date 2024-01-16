@@ -4,7 +4,7 @@ import "highlight.js/styles/monokai.css";
 
 export function isUrl(url: string): boolean {
     // the most mean solution you will ever see, but somehow works
-    if (url.includes("http") || url.includes("https") || url.includes("www")) {
+    if (url.includes("http://") || url.includes("https://") || url.includes("www.")) {
         return true;
     }
     return false;

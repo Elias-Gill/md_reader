@@ -1,4 +1,5 @@
 - [../README.md](./../README.md)
+- ![imagen](~/Plantillas/2023wrapped_say-thanks-top-artist.jpeg)
 # Conventional commits, a good practice
 ## Definition
 Conventional Commits is a specification for writing commit messages in a way that is easy for humans and machines to understand. It defines a standard format for commit messages, which consists of the following parts:
